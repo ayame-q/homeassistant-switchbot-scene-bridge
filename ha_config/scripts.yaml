@@ -1,0 +1,66 @@
+heater_power_toggle:
+  alias: Heater Power Toggle
+  sequence:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.bedroom_heater_power
+heater_temp_up:
+  alias: Heater Temp Up
+  sequence:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.bedroom_heater_up
+heater_temp_down:
+  alias: Heater Temp Down
+  sequence:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.bedroom_heater_down
+unknown:
+  sequence:
+  - if:
+    - condition: device
+      type: is_on
+      device_id: cd8b7a9290be1908d29f91691538fc75
+      entity_id: 90872cf809f9af9fb23b722b59e17e6a
+      domain: light
+    - condition: device
+      type: is_on
+      device_id: 5646f16d67809d1359e6076a586f1c1f
+      entity_id: daf7987be4e72d24a84e4ae3657ae0c2
+      domain: light
+    then:
+    - action: tts.speak
+      metadata: {}
+      target:
+        entity_id: tts.google_ai_tts
+      data:
+        cache: true
+        media_player_entity_id: media_player.google_home_mini_red
+        message: '{{ message }}'
+  - action: tts.speak
+    metadata: {}
+    target:
+      entity_id: tts.google_ai_tts
+    data:
+      cache: true
+      media_player_entity_id: media_player.nesthub6089
+      message: '{{ message }}'
+  - action: tts.speak
+    metadata: {}
+    target:
+      entity_id: tts.google_ai_tts
+    data:
+      cache: true
+      media_player_entity_id: media_player.googlehomeminigreen
+      message: '{{ message }}'
+  fields:
+    message:
+      selector:
+        text:
+      name: メッセージ
+      required: true
+      description: 発声するメッセージを指定します
+  alias: 音声通知
+  description: ''
+  icon: mdi:bullhorn

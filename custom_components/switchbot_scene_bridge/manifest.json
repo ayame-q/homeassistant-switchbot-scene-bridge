@@ -1,0 +1,10 @@
+{
+  "domain": "switchbot_scene_bridge",
+  "name": "SwitchBot Scene Bridge",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/local/switchbot_scene_bridge",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "0.2.0"
+}

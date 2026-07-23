@@ -1,0 +1,10 @@
+execute_scene:
+  name: Execute scene
+  description: Execute a SwitchBot manual scene by scene ID.
+  fields:
+    scene_id:
+      name: Scene ID
+      description: SwitchBot manual scene ID.
+      required: true
+      selector:
+        text:

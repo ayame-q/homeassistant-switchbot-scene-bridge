@@ -1,0 +1,22 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "SwitchBot Scene Bridge",
+        "description": "Connect to SwitchBot OpenAPI and expose manual scenes as Home Assistant buttons.",
+        "data": {
+          "name": "Name",
+          "token": "Open Token",
+          "secret": "Secret",
+          "scan_interval": "Scene refresh interval in seconds"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to SwitchBot OpenAPI. Check the token and secret."
+    },
+    "abort": {
+      "already_configured": "SwitchBot Scene Bridge is already configured."
+    }
+  }
+}

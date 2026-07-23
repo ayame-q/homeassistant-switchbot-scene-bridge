@@ -1,0 +1,50 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+switchbot_scene_bridge:
+  name: SwitchBotシーン
+  token: !secret switchbot_token
+  secret: !secret switchbot_secret
+  scan_interval: 3600
+
+# Heater Vision Config
+heater_vision: !include heater_vision.yaml
+
+# Projector Controller
+projector_controller:
+  name: Projector
+  nature_remo_token: !secret nature_remo_token
+  ammeter_entity_id: sensor.projector_ammeter
+  current_threshold: 0.15
+  remo_device_name: リビング
+  appliance_name: プロジェクター
+  signal_name: 電源
+
+# Simple IR Heater
+climate:
+  - platform: heater_simple_ir
+    name: リビング暖房
+    token: !secret nature_remo_token
+    appliance_name: リビング暖房
+    off_signal_name: オフ
+    temperature_signal_template: "{temperature}"
+    min_temp: 10
+    max_temp: 30
+    default_temperature: 20
+
+# HDMI Capture
+hdmi_capture:
+  name: HDMI Capture
+  host: raspberrypi-hdmicapture.local
+  api_port: 8088
+  token: !secret hdmi_capture_token
+  rtsp_url: rtsp://raspberrypi-hdmicapture.local:8554/hdmi
