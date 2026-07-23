@@ -1,25 +1,29 @@
-# SwitchBot Scene Bridge for Home Assistant
+# SwitchBot Scene Bridge
 
-This staged bundle adds a custom Home Assistant integration that discovers
-SwitchBot OpenAPI v1.1 manual scenes and exposes each scene as a Home Assistant
-button entity.
+SwitchBot OpenAPI v1.1のmanual sceneを取得し、各sceneをHome Assistantのbutton entityとサービスとして公開するカスタム統合です。
 
-Files to transfer:
+## 設定と配置
 
-- `custom_components/switchbot_scene_bridge/` -> `/config/custom_components/switchbot_scene_bridge/`
-- `ha_config/configuration.yaml` -> `/config/configuration.yaml`
-- `ha_config/scripts.yaml` -> `/config/scripts.yaml`
+- component正本: `custom_components/switchbot_scene_bridge/`
+- package正本: `switchbot_scene_bridge.yaml`
+- 本番package: `/homeassistant/packages/switchbot_scene_bridge.yaml`
+- secrets例: `secrets.example.yaml`
 
-Manual secret setup after transfer:
+```sh
+python3 ../scripts/ha_config.py deploy-component . switchbot_scene_bridge
+python3 ../scripts/ha_config.py deploy-package .
+```
 
-1. Add the value-only entries from `ha_config/secrets.additions.yaml` to `/config/secrets.yaml`.
-2. Replace `REPLACE_WITH_SWITCHBOT_OPEN_TOKEN` and `REPLACE_WITH_SWITCHBOT_SECRET`.
-3. Restart Home Assistant.
+確認後、必要なコマンドへ `--apply` を付けて反映します。`switchbot_token` と `switchbot_secret` の実値は本番の `secrets.yaml` にだけ保存します。
 
-Usage:
+## 利用方法
 
-- Press the generated `button.*` entity for a SwitchBot manual scene.
-- Or call `switchbot_scene_bridge.execute_scene` with a `scene_id`.
+- 生成された `button.*` entityを押してmanual sceneを実行します。
+- または `switchbot_scene_bridge.execute_scene` を `scene_id` 付きで呼び出します。
+- scene一覧は `scan_interval` に従って自動更新されます。
 
-Scenes are refreshed automatically based on `scan_interval` in
-`configuration.yaml`.
+## 検証
+
+```sh
+python3 -m compileall custom_components/switchbot_scene_bridge scripts
+```

@@ -1,0 +1,5 @@
+switchbot_scene_bridge:
+  name: SwitchBotシーン
+  token: !secret switchbot_token
+  secret: !secret switchbot_secret
+  scan_interval: 3600
