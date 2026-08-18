@@ -27,3 +27,7 @@ python3 ../scripts/ha_config.py deploy-package .
 ```sh
 python3 -m compileall custom_components/switchbot_scene_bridge scripts
 ```
+
+## ライセンス
+
+MIT License
